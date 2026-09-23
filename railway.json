@@ -1,6 +1,7 @@
 {
   "build": {
-    "builder": "nixpacks"
+    "builder": "nixpacks",
+    "buildCommand": "npm install && cd frontend && npm install && cd .."
   },
   "deploy": {
     "startCommand": "NODE_OPTIONS=--openssl-legacy-provider node backend/server.js",
