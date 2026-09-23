@@ -105,13 +105,24 @@ export default function WorkflowDashboard({ authToken }) {
           {artifacts.length === 0 ? (
             <p className="no-artifacts">No artifacts yet...</p>
           ) : (
-            <div className="artifacts-list">
-              {artifacts.map(art => (
-                <div key={art.path} className="artifact-item" onClick={() => setSelectedArtifact(art)}>
-                  <div className="artifact-name">{art.name}</div>
+            <>
+              <div className="artifacts-list">
+                {artifacts.map(art => (
+                  <div key={art.path} className="artifact-item" onClick={() => setSelectedArtifact(art)}>
+                    <div className="artifact-name">{art.name}</div>
+                  </div>
+                ))}
+              </div>
+
+              {selectedArtifact && (
+                <div className="selected-artifact-panel">
+                  <h3>📄 {selectedArtifact.name}</h3>
+                  <div className="artifact-content">
+                    <pre>{JSON.stringify(selectedArtifact.content, null, 2)}</pre>
+                  </div>
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           )}
         </div>
       </div>
