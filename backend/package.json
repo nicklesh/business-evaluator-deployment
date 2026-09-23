@@ -1,15 +1,14 @@
 {
-  "name": "business-idea-evaluator",
+  "name": "business-evaluator-backend",
   "version": "1.0.0",
-  "description": "Multi-agent business idea evaluator",
-  "private": true,
-  "workspaces": [
-    "backend",
-    "frontend"
-  ],
+  "description": "Backend for business idea evaluator",
+  "main": "server.js",
   "scripts": {
-    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ..",
-    "build": "cd frontend && npm run build",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider node backend/server.js"
+    "start": "NODE_OPTIONS=--openssl-legacy-provider node server.js",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   }
 }
