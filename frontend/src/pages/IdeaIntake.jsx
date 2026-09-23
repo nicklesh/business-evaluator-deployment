@@ -22,8 +22,9 @@ export default function IdeaIntake({ onRunCreated, authToken }) {
     setError('');
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/runs`, {
+      // const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      // const response = await fetch(`${apiUrl}/api/runs`, {
+      const response = await fetch(`/api/runs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
