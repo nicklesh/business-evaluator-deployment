@@ -13,6 +13,16 @@ const runs = new Map();
 const agents = new Map();
 const artifacts = new Map();
 
+// Health check endpoint (no auth required)
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'healthy',
+    service: 'Business Idea Evaluator API',
+    version: '1.0.0',
+    message: 'Send requests to /api/runs with Authorization header'
+  });
+});
+
 // Middleware
 app.use((req, res, next) => {
   const authHeader = req.headers.authorization;
