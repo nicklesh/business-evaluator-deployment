@@ -6,7 +6,7 @@ export default function WorkflowDashboard({ authToken }) {
   const { run_id } = useParams();
   const [run, setRun] = useState(null);
   const [artifacts, setArtifacts] = useState([]);
-  const [, setSelectedArtifact] = useState(null);
+  const [selectedArtifact, setSelectedArtifact] = useState(null);  // ✅ CORRECT
   const [decision, setDecision] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
