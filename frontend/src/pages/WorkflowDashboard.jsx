@@ -6,7 +6,7 @@ export default function WorkflowDashboard({ authToken }) {
   const { run_id } = useParams();
   const [run, setRun] = useState(null);
   const [artifacts, setArtifacts] = useState([]);
-  const [selectedArtifact, setSelectedArtifact] = useState(null);
+  const [, setSelectedArtifact] = useState(null);
   const [decision, setDecision] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -21,6 +21,7 @@ export default function WorkflowDashboard({ authToken }) {
     return () => {
       if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [run_id, authToken]);
 
   async function loadRunState() {
