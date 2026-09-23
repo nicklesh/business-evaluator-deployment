@@ -14,8 +14,9 @@ export default function WorkflowDashboard({ authToken }) {
 
   const loadRunState = useCallback(async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/runs/${run_id}`, {
+      // const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      // const response = await fetch(`${apiUrl}/api/runs/${run_id}`, {
+      const response = await fetch(`/api/runs/${run_id}`, {
         headers: { 'Authorization': `Bearer ${authToken}` }
       });
 
