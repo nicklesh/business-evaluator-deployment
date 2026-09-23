@@ -26,7 +26,8 @@ export default function WorkflowDashboard({ authToken }) {
       setLoading(false);
       setError('');
 
-      const artifactsRes = await fetch(`${apiUrl}/api/runs/${run_id}/artifacts`, {
+      // const artifactsRes = await fetch(`${apiUrl}/api/runs/${run_id}/artifacts`, {
+      const artifactsRes = await fetch(`/api/runs/${run_id}/artifacts`, {
         headers: { 'Authorization': `Bearer ${authToken}` }
       });
       if (artifactsRes.ok) {
@@ -35,7 +36,8 @@ export default function WorkflowDashboard({ authToken }) {
       }
 
       if (data.status === 'completed') {
-        const decisionRes = await fetch(`${apiUrl}/api/runs/${run_id}/decision`, {
+        // const decisionRes = await fetch(`${apiUrl}/api/runs/${run_id}/decision`, {
+        const decisionRes = await fetch(`/api/runs/${run_id}/decision`, {
           headers: { 'Authorization': `Bearer ${authToken}` }
         });
         if (decisionRes.ok) {
