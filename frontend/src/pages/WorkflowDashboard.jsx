@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/WorkflowDashboard.css';
 
@@ -12,12 +12,18 @@ export default function WorkflowDashboard({ authToken }) {
   const [error, setError] = useState('');
   const pollIntervalRef = React.useRef(null);
 
-  useEffect(() => {
-    loadRunState();
-    pollIntervalRef.current = setInterval(() => {
-      loadRunState();
-    }, 3000);
+  const loadRunState = useCallback(async () => {
+     // ... function body stays the same ...
+   }, [run_id, authToken]);
 
+   useEffect(() => {
+     loadRunState();
+     pollIntervalRef.current = setInterval(() => {
+       loadRunState();
+     }, 3000);
+     return () => { ... };
+   }, [loadRunState]);
+  
     return () => {
       if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
     };
