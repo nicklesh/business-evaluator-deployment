@@ -40,7 +40,8 @@ export default function WorkflowDashboard({ authToken }) {
         headers: { 'Authorization': `Bearer ${authToken}` }
       });
       if (artifactsRes.ok) {
-        setArtifacts(await artifactsRes.json()).artifacts || [];
+        const artifactsData = await artifactsRes.json();
+        setArtifacts(artifactsData.artifacts || []);
       }
 
       if (data.status === 'completed') {
