@@ -13,23 +13,6 @@ export default function WorkflowDashboard({ authToken }) {
   const pollIntervalRef = React.useRef(null);
 
   const loadRunState = useCallback(async () => {
-     // ... function body stays the same ...
-   }, [run_id, authToken]);
-
-   useEffect(() => {
-     loadRunState();
-     pollIntervalRef.current = setInterval(() => {
-       loadRunState();
-     }, 3000);
-     return () => { ... };
-   }, [loadRunState]);
-  
-    return () => {
-      if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
-    };
-  }, [run_id, authToken]);
-
-  async function loadRunState() {
     try {
       const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       const response = await fetch(`${apiUrl}/api/runs/${run_id}`, {
@@ -64,7 +47,17 @@ export default function WorkflowDashboard({ authToken }) {
       setError('Failed to load run state');
       setLoading(false);
     }
-  }
+  }, [run_id, authToken]);
+
+  useEffect(() => {
+    loadRunState();
+    pollIntervalRef.current = setInterval(() => {
+      loadRunState();
+    }, 3000);
+    return () => {
+      if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+    };
+  }, [loadRunState]);
 
   if (loading) return <div className="workflow-loading"><div className="loading-spinner"></div><p>Loading...</p></div>;
   if (error) return <div className="workflow-error"><p>{error}</p></div>;
