@@ -73,15 +73,6 @@ app.post('/api/runs', async (req, res) => {
   });
 });
 
-// ============================================
-// SPA FALLBACK - Serve React Router paths
-// ============================================
-
-// Any unmatched routes serve index.html for React Router
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
-
 // Get run
 app.get('/api/runs/:run_id', (req, res) => {
   const run = runs.get(req.params.run_id);
@@ -214,6 +205,15 @@ function simulateAgentExecution(run_id, data) {
     run.risk_adjusted_score = Math.random() * 5 + 4;
   }, currentTime);
 }
+
+// ============================================
+// SPA FALLBACK - Serve React Router paths
+// ============================================
+
+// Any unmatched routes serve index.html for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Backend server running on port ${PORT}`);
